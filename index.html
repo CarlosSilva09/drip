@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>drip.cafe</title>
+    <link rel="stylesheet" href="assets/css/fonts.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+        <!-- Seção Hero - EXATAMENTE COMO FIGMA -->
+    <section id="home" class="hero-section">
+        <div class="hero-container">
+            <!-- Conteúdo principal -->
+            <div class="hero-main-content">
+                <div class="hero-text-section">
+                    <h1 class="hero-title">
+                        <span class="hero-text-dark">Veja agora</span><br>
+                        <span class="hero-text-dark">como fazer seu</span><br>
+                        <span class="hero-text-red">drip de café</span>
+                    </h1>
+                    
+                    <!-- Bloco abaixo do título: logo 147 + ícone amarelo -->
+                    <div class="hero-below-title">
+                        <!-- Elemento 147 vermelho conforme Figma -->
+                        <div class="hero-logo-small">
+                            <img src="img/logo.webp" alt="147.digital Logo">
+                        </div>
+                        
+                        <!-- Ícone amarelo do Figma -->
+                        <div class="hero-yellow-circle">
+                            <img src="img/icone-amarelo-hero (2).svg" alt="Ícone amarelo">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Telefone com vídeo -->
+                <div class="hero-phone" aria-label="Veja o vídeo sobre drip de café">
+                    <div class="hero-phone-frame">
+                        <img class="hero-phone-image" src="img/Celular.svg" alt="Smartphone exibindo o vídeo">
+                        <div class="hero-phone-screen">
+                            <iframe
+                                src="https://www.youtube.com/embed/iA2eSe9TG-0?playsinline=1&amp;autoplay=1&amp;loop=1&amp;playlist=iA2eSe9TG-0&amp;controls=0&amp;rel=0&amp;modestbranding=1"
+                                title="Design sem nome"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Fundo SVG oficial (animável) -->
+            <object class="hero-floor-svg" data="img/fundo-hero.svg" type="image/svg+xml" aria-hidden="true"></object>
+
+            <!-- Glow sutil sobre o grid em perspectiva -->
+            <div class="hero-grid-glow" aria-hidden="true"></div>
+
+            <!-- Elemento decorativo no canto direito -->
+            <img class="hero-corner-element" src="img/elemento-hero-cantodireito.webp" alt="Elemento decorativo canto direito"/>
+        </div>
+    </section>
+        <!-- Seção Rd-Partner -->
+    <section id="rd-partner" class="rd-partner-section">
+        <div class="container">
+            <div class="rd-partner-inner">
+                <div class="rd-partner-image">
+                    <img src="img/team-rd.webp" alt="Equipe 147 Digital e TOTVS RD">
+                    <div class="rd-partner-badge">
+                        <img src="img/silver-25.svg" alt="RD Station Partners Silver 2025">
+                    </div>
+                </div>
+                <div class="rd-partner-info">
+                    <div class="rd-partner-logos" aria-label="Parceria RD Station e 147 Digital">
+                        <img class="rd-partner-logo rd-partner-logo-rd" src="img/rd-station.svg" alt="Logo RD Station">
+                        <img class="rd-partner-logo rd-partner-logo-147" src="img/logo.svg" alt="Logo 147 Digital">
+                    </div>
+                    <h2 class="rd-partner-title">somos rd partner</h2>
+                    <p>A 147 acredita que uma estratégia multicanal gera resultados muito mais consistentes. As suas soluções integradas apoiam o ecossistema que engloba marketing, CRM e Conversas.</p>
+                    <p>Em poucos meses conquistamos a posição de Parceiros Silver, e isso é o resultado de um trabalho em conjunto com o time TOTVS RD, para otimizarmos os resultados de nossos clientes.</p>
+                    <p>Agende uma reunião com o nosso time e entenda como a 147 + RD podem alavancar o seu negócio. Vem ser 147 Digital!</p>
+                </div>
+            </div>
+        </div>
+        <span class="rd-partner-accent rd-partner-accent-top" aria-hidden="true"></span>
+        <span class="rd-partner-accent rd-partner-accent-bottom" aria-hidden="true"></span>
+    </section>
+        <!-- Seção Footer (logo grande em fundo dinâmico) -->
+    <section id="contato" class="footer-panels-section">
+        <div class="footer-panels-pin">
+            <div class="footer-content">
+                <!-- Logo gigante atrás (opacidade baixa) -->
+                <div class="footer-logo-giant">
+                    <img src="img/logo-footer.webp" alt="147 Digital">
+                </div>
+                
+                <!-- Texto na frente -->
+                <h2 class="footer-heading">
+                    <span class="footer-heading-line">Nós resolvemos no digital</span>
+                    <span class="footer-heading-line">o que move o seu negócio.</span>
+                </h2>
+                <div class="footer-cta">
+                    <span class="footer-cta-text">Vem ser</span>
+                    <span class="footer-cta-text">147 Digital</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GSAP Core -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    
+    <!-- GSAP Plugins -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/TextPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/MotionPathPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollToPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/Observer.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/Flip.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/Draggable.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+
+    <!-- Anime.js para animações específicas de texto -->
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+
+    <!-- Scripts customizados -->
+    <!-- Removido gsap.js (ESM) para evitar erro de import no navegador -->
+    <script src="assets/js/script.js"></script>
+
+</body>
+</html>
