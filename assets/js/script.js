@@ -271,6 +271,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const logos = section.querySelector(".rd-partner-logos");
     const title = section.querySelector(".rd-partner-title");
     const paragraphs = section.querySelectorAll(".rd-partner-info p");
+    const cta = section.querySelector(".rd-partner-cta");
 
     const tl = gsap.timeline({
       paused: true,
@@ -282,6 +283,10 @@ document.addEventListener('DOMContentLoaded', function() {
       .from(logos, { y: 24, autoAlpha: 0 }, "-=0.25")
       .from(title, { y: 16, autoAlpha: 0 }, "-=0.25")
       .from(paragraphs, { y: 20, autoAlpha: 0, stagger: 0.1 }, "-=0.2");
+
+    if (cta) {
+      tl.from(cta, { y: 24, autoAlpha: 0 }, "-=0.15");
+    }
 
     const floatTweens = [
       photo

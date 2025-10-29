@@ -889,6 +889,36 @@ body {
     gap: clamp(16px, 3vw, 24px);
 }
 
+.rd-partner-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      align-self: flex-start;
+      padding: clamp(10px, 2.2vw, 13px) clamp(20px, 4.2vw, 28px);
+      margin-top: clamp(8px, 2vw, 16px);
+      border-radius: 999px;
+      background: #4EC1B6;
+      color: #063544;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      text-transform: none;
+      text-decoration: none;
+      box-shadow: none;
+      transition: background-color 0.2s ease;
+      font-size: 20px;
+}
+
+.rd-partner-cta:hover,
+[data-whatintent="mouse"] .rd-partner-cta:focus-visible {
+      background: #45E7C6;
+      box-shadow: none;
+}
+
+.rd-partner-cta:focus-visible {
+      outline: 3px solid rgba(69, 231, 198, 0.6);
+      outline-offset: 4px;
+}
+
 .rd-partner-logos {
     display: inline-flex;
     align-items: center;
