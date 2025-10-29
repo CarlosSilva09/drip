@@ -258,6 +258,69 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+// ====================================
+// RD Partner Section Entrance Animation
+// ====================================
+  (function initRdPartnerAnimation() {
+    const section = document.querySelector(".rd-partner-section");
+    if (!section) return;
+
+    const image = section.querySelector(".rd-partner-image");
+    const badge = section.querySelector(".rd-partner-badge");
+    const logos = section.querySelector(".rd-partner-logos");
+    const title = section.querySelector(".rd-partner-title");
+    const paragraphs = section.querySelectorAll(".rd-partner-info p");
+
+    const tl = gsap.timeline({
+      paused: true,
+      defaults: { duration: 0.6, ease: "power2.out" },
+    });
+
+    tl.from(image, { x: -32, autoAlpha: 0 })
+      .from(badge, { scale: 0.6, autoAlpha: 0, ease: "back.out(1.5)" }, "-=0.3")
+      .from(logos, { y: 24, autoAlpha: 0 }, "-=0.25")
+      .from(title, { y: 16, autoAlpha: 0 }, "-=0.25")
+      .from(paragraphs, { y: 20, autoAlpha: 0, stagger: 0.1 }, "-=0.2");
+
+    const floatTweens = [
+      image
+        ? gsap.to(image, {
+            y: "+=10",
+            duration: 5,
+            ease: "sine.inOut",
+            yoyo: true,
+            repeat: -1,
+            paused: true,
+          })
+        : null,
+    ].filter(Boolean);
+
+    const pauseFloat = () => {
+      floatTweens.forEach((tween) => tween.pause());
+    };
+
+    tl.eventCallback("onComplete", () =>
+      floatTweens.forEach((tween) => tween.play())
+    );
+
+    const playTimeline = () => {
+      pauseFloat();
+      tl.restart();
+    };
+
+    if (typeof ScrollTrigger !== "undefined") {
+      ScrollTrigger.create({
+        trigger: section,
+        start: "top 75%",
+        onEnter: playTimeline,
+        onEnterBack: playTimeline,
+        onLeave: pauseFloat,
+        onLeaveBack: pauseFloat,
+      });
+    } else {
+      playTimeline();
+    }
+  })();
 
     // ====================================
     // Footer Section - Logo Dinâmico (LEGADO, protegido)
@@ -414,39 +477,73 @@ document.addEventListener('DOMContentLoaded', function() {
     // ====================================
     const footerPanelsPin = document.querySelector('.footer-panels-pin');
     if (footerPanelsPin) {
-        const bgColors = ['#DC473B', '#1E2F3C', '#4EC1B6', '#FEE644', '#DC473B'];
-        const footerTextElements = footerPanelsPin.querySelectorAll('.footer-heading, .footer-cta');
-        const footerLogoGiant = footerPanelsPin.querySelector('.footer-logo-giant');
+        // Garante que as classes de tema mapeiem para os estilos existentes
+        footerPanelsPin.classList.add('footer-panels');
+        const themes = [
+            {
+                name: 'theme-teal',
+                color: '#0CB3AC',
+                logoVars: { frame: 0.26, image: 0.95, shadow: 0.24 }
+            },
+            {
+                name: 'theme-red',
+                color: '#DC473B',
+                logoVars: { frame: 0.23, image: 0.93, shadow: 0.22 }
+            },
+            {
+                name: 'theme-yellow',
+                color: '#FEE644',
+                logoVars: { frame: 0.16, image: 0.9, shadow: 0.12 }
+            }
+        ];
+
+        const themeClasses = themes.map(theme => theme.name);
+
+        const applyTheme = (theme) => {
+            footerPanelsPin.classList.remove(...themeClasses);
+            footerPanelsPin.classList.add(theme.name);
+        };
+
+        const cycleThemes = [...themes, themes[0]]; // duplicate first to close the loop
         const tlFooter = gsap.timeline({
+            defaults: { ease: 'none' },
             scrollTrigger: {
                 trigger: '.footer-panels-section',
                 start: 'top top',
-                end: 'bottom bottom',
+                end: () => '+=' + (cycleThemes.length - 1) * window.innerHeight,
                 scrub: true,
-                pin: '.footer-panels-pin'
+                pin: '.footer-panels-pin',
+                anticipatePin: 1,
+                snap: {
+                    snapTo: (value) => {
+                        const step = 1 / (cycleThemes.length - 1);
+                        return Math.round(value / step) * step;
+                    },
+                    duration: 0.35,
+                    ease: 'power1.inOut'
+                }
             }
         });
-        bgColors.forEach((color, i) => {
-            tlFooter.to(footerPanelsPin, { backgroundColor: color, duration: 1 }, i);
+
+        gsap.set(footerPanelsPin, {
+            backgroundColor: cycleThemes[0].color,
+            '--frame-opacity': cycleThemes[0].logoVars.frame,
+            '--logo-img-opacity': cycleThemes[0].logoVars.image,
+            '--logo-shadow-opacity': cycleThemes[0].logoVars.shadow
         });
-        if (footerLogoGiant) {
-            gsap.set(footerLogoGiant, {
-                '--frame-opacity': 0.24,
-                '--logo-img-opacity': 1,
-                '--logo-shadow-opacity': 0.28
-            });
-            tlFooter.to(footerLogoGiant, {
-                '--frame-opacity': 0,
-                '--logo-img-opacity': 0.35,
-                '--logo-shadow-opacity': 0.05,
-                duration: 0.6,
-                ease: 'power2.out'
-            }, bgColors.length - 0.6);
-        }
-        if (footerTextElements.length) {
-            gsap.set(footerTextElements, { autoAlpha: 0, y: 40, rotateX: 15, transformPerspective: 600 });
-            tlFooter.to(footerTextElements, { autoAlpha: 1, y: 0, rotateX: 0, duration: 0.6, ease: 'power3.out', stagger: 0.08 }, bgColors.length - 0.4);
-        }
+        applyTheme(cycleThemes[0]);
+
+        cycleThemes.forEach((theme, index) => {
+            if (index === 0) return;
+            tlFooter.to(footerPanelsPin, {
+                backgroundColor: theme.color,
+                '--frame-opacity': theme.logoVars.frame,
+                '--logo-img-opacity': theme.logoVars.image,
+                '--logo-shadow-opacity': theme.logoVars.shadow
+            }, index - 1);
+            tlFooter.call(applyTheme, [theme], index - 1 + 0.001);
+        });
+
     }
 
     // ====================================
@@ -455,7 +552,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const footer = document.querySelector('.footer-section');
     if (footer) {
         const setFooterTheme = (theme) => {
-            footer.classList.remove('footer-theme-red','footer-theme-teal','footer-theme-dark','footer-theme-yellow');
+            footer.classList.remove('footer-theme-red','footer-theme-teal','footer-theme-yellow');
             footer.classList.add(theme);
         };
 
@@ -465,7 +562,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         ScrollTrigger.create({
             trigger: '.numbers-section', start: 'top center', end: 'bottom center',
-            onEnter: () => setFooterTheme('footer-theme-dark'), onEnterBack: () => setFooterTheme('footer-theme-dark')
+            onEnter: () => setFooterTheme('footer-theme-teal'), onEnterBack: () => setFooterTheme('footer-theme-teal')
         });
         ScrollTrigger.create({
             trigger: '.about-section', start: 'top center', end: 'bottom center',

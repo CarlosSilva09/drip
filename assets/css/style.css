@@ -472,10 +472,7 @@ body {
   background: #dc473b;
 }
 .footer-section.footer-theme-teal {
-  background: #4ec1b6;
-}
-.footer-section.footer-theme-dark {
-  background: #1e2f3c;
+  background: #0cb3ac;
 }
 .footer-section.footer-theme-yellow {
   background: #fee644;
@@ -508,11 +505,8 @@ body {
 .footer-section.footer-panels {
   background: #dc473b;
 }
-.footer-panels.theme-dark {
-  background: #1e2f3c;
-}
 .footer-panels.theme-teal {
-  background: #4ec1b6;
+  background: #0cb3ac;
 }
 .footer-panels.theme-yellow {
   background: #fee644;
@@ -547,11 +541,8 @@ body {
   background: #dc473b; /* cor inicial */
   transition: background-color 0.4s ease;
 }
-.footer-panels-pin.theme-dark {
-  background: #1e2f3c;
-}
 .footer-panels-pin.theme-teal {
-  background: #4ec1b6;
+  background: #0cb3ac;
 }
 .footer-panels-pin.theme-yellow {
   background: #fee644;
@@ -696,11 +687,6 @@ body {
 }
 
 /* Ajuste de cores do texto e logo por tema */
-.footer-panels-pin.theme-dark .footer-heading,
-.footer-panels-pin.theme-dark .footer-cta-text {
-  color: #ffffff;
-}
-
 .footer-panels-pin.theme-teal .footer-heading,
 .footer-panels-pin.theme-teal .footer-cta-text {
   color: #ffffff;
