@@ -99,6 +99,32 @@ document.addEventListener('DOMContentLoaded', function() {
         tlHeroIn.add(() => heroTitleIntroTl.restart(true), 0.18);
     }
 
+    // Capa do vídeo no smartphone (troca para o iframe apenas ao clicar)
+    (function initHeroVideoCover() {
+        const phoneScreen = document.querySelector('.hero-phone-screen');
+        if (!phoneScreen) return;
+        const coverButton = phoneScreen.querySelector('.hero-video-cover');
+        const iframe = phoneScreen.querySelector('iframe');
+        if (!iframe || !coverButton) return;
+
+        const videoSrc = iframe.dataset.videoSrc;
+        iframe.setAttribute('aria-hidden', 'true');
+        iframe.setAttribute('tabindex', '-1');
+
+        const activateVideo = () => {
+            if (!phoneScreen.classList.contains('hero-phone-screen--playing')) {
+                if (videoSrc) {
+                    iframe.src = videoSrc;
+                }
+                iframe.removeAttribute('aria-hidden');
+                iframe.removeAttribute('tabindex');
+                phoneScreen.classList.add('hero-phone-screen--playing');
+            }
+        };
+
+        coverButton.addEventListener('click', activateVideo);
+    })();
+
     // Lupa (ícone dentro da ampola) girando no centro
     gsap.to('.hero-yellow-circle img', {
         rotation: 360,
