@@ -266,6 +266,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!section) return;
 
     const image = section.querySelector(".rd-partner-image");
+    const photo = image ? image.querySelector("img") : null;
     const badge = section.querySelector(".rd-partner-badge");
     const logos = section.querySelector(".rd-partner-logos");
     const title = section.querySelector(".rd-partner-title");
@@ -283,8 +284,8 @@ document.addEventListener('DOMContentLoaded', function() {
       .from(paragraphs, { y: 20, autoAlpha: 0, stagger: 0.1 }, "-=0.2");
 
     const floatTweens = [
-      image
-        ? gsap.to(image, {
+      photo
+        ? gsap.to(photo, {
             y: "+=10",
             duration: 5,
             ease: "sine.inOut",

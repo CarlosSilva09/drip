@@ -1,4 +1,4 @@
-:root { --header-h: 72px; }
+﻿:root { --header-h: 72px; }
 /* ====================================
    Reset & Base Styles
    ==================================== */
@@ -841,10 +841,10 @@ body {
 }
 
 .rd-partner-image {
+      margin: 0;
       position: relative;
       border-radius: 5px;
       overflow: visible;
-      box-shadow: 0 40px 120px rgba(0, 0, 0, 0.45);
       max-width: clamp(420px, 36vw, 520px);
 }
 
@@ -853,6 +853,14 @@ body {
       width: 100%;
     height: auto;
     border-radius: inherit;
+}
+
+.rd-partner-caption {
+      margin-top: 18px;
+      text-align: center;
+      color: #DDE1E7;
+      font-size: 22px;
+      line-height: 1.4;
 }
 
 .rd-partner-badge {
